@@ -442,6 +442,14 @@ func (p *G1Jac) ScalarMultiplication(q *G1Jac, s *big.Int) *G1Jac {
 	return p.mulGLV(q, s)
 }
 
+// FixedScalarMultiplication computes and returns p = [s]a
+// where p and a are Jacobian points.
+// using the GLV technique.
+// see https://www.iacr.org/archive/crypto2001/21390189.pdf
+func (p *G1Jac) FixedScalarMultiplication(q *G1Jac, s *big.Int) *G1Jac {
+	return p.mulGLV(q, s)
+}
+
 // ScalarMultiplicationBase computes and returns p = [s]g
 // where g is the prime subgroup generator.
 func (p *G1Jac) ScalarMultiplicationBase(s *big.Int) *G1Jac {

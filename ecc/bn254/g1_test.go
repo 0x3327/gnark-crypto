@@ -29,6 +29,30 @@ import (
 	"github.com/leanovate/gopter/prop"
 )
 
+func Test_ECPDKSAP_FixedScalarMultiplication(t *testing.T) {
+	t.Parallel()
+	parameters := gopter.DefaultTestParameters()
+	parameters.MinSuccessfulTests = 10
+
+	properties := gopter.NewProperties(parameters)
+
+	properties.Property("FixedScalarMultiplication should return same results as ScalarMultiplication", prop.ForAll(
+		func(s fr.Element) bool {
+			var op1, op2 G1Jac
+			var sInt big.Int
+			g := g1Gen
+			s.BigInt(&sInt)
+			op1.ScalarMultiplication(&g, &sInt)
+			op2.FixedScalarMultiplication(&g, &sInt)
+			return op1.Equal(&op2) 
+
+		},
+		GenFr(),
+	))
+
+	properties.TestingRun(t, gopter.ConsoleReporter(false))
+}
+
 func TestG1AffineEndomorphism(t *testing.T) {
 	t.Parallel()
 	parameters := gopter.DefaultTestParameters()
