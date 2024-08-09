@@ -1,5 +1,3 @@
-// Copyright 2020 Consensys Software Inc.
-//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -17,12 +15,14 @@
 package bn254
 
 import (
+	"fmt"
+	"math/big"
+	"runtime"
+
 	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark-crypto/ecc/bn254/fp"
 	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
 	"github.com/consensys/gnark-crypto/internal/parallel"
-	"math/big"
-	"runtime"
 )
 
 // G1Affine is a point in affine coordinates (x,y)
@@ -446,8 +446,162 @@ func (p *G1Jac) ScalarMultiplication(q *G1Jac, s *big.Int) *G1Jac {
 // where p and a are Jacobian points.
 // using the GLV technique.
 // see https://www.iacr.org/archive/crypto2001/21390189.pdf
-func (p *G1Jac) FixedScalarMultiplication(q *G1Jac, s *big.Int) *G1Jac {
-	return p.mulGLV(q, s)
+func (p *G1Jac) FixedScalarMultiplication(
+	q *G1Jac, 
+	table *[15]G1Jac, 
+	neg *[2]bool, 
+	k1 *fr.Element, 
+	k2 *fr.Element, 
+	tableElementNeeded *[15]bool,
+	hiWordIndex int, 
+) *G1Jac {
+
+	var res G1Jac
+
+	res.Set(&g1Infinity)
+
+	// table[b3b2b1b0-1] = b3b2 ⋅ ϕ(q) + b1b0*q
+	table[0].Set(q)
+	table[3].phi(q)
+
+	// split the scalar, modifies ±q, ϕ(q) accordingly
+	// k := ecc.SplitScalar(s, &glvBasis)
+
+	// if k[0].Sign() == -1 {
+	// 	k[0].Neg(&k[0])
+	// 	table[0].Neg(&table[0])
+	// }
+	// if k[1].Sign() == -1 {
+	// 	k[1].Neg(&k[1])
+	// 	table[3].Neg(&table[3])
+	// }
+
+	if neg[0] {
+		table[0].Neg(&table[0])
+	}
+	if neg[1] {
+		table[3].Neg(&table[3])
+	}
+
+	// precompute table (2 bits sliding window)
+	// table[b3b2b1b0-1] = b3b2 ⋅ ϕ(q) + b1b0 ⋅ q if b3b2b1b0 != 0
+	if (tableElementNeeded[1]) {
+		table[1].Double(&table[0])
+	}
+	if (tableElementNeeded[2]) {
+		table[2].Set(&table[1]).AddAssign(&table[0])
+	}
+	if (tableElementNeeded[4]) {
+		table[4].Set(&table[3]).AddAssign(&table[0])
+	}
+	if (tableElementNeeded[5]) {
+		table[5].Set(&table[3]).AddAssign(&table[1])
+	}
+	if (tableElementNeeded[6]) {
+		table[6].Set(&table[3]).AddAssign(&table[2])
+	}
+	if (tableElementNeeded[7]) {
+		table[7].Double(&table[3])
+	}
+	if (tableElementNeeded[8]) {
+		table[8].Set(&table[7]).AddAssign(&table[0])
+	}
+	if (tableElementNeeded[9]) {
+		table[9].Set(&table[7]).AddAssign(&table[1])
+	}
+	if (tableElementNeeded[10]) {
+		table[10].Set(&table[7]).AddAssign(&table[2])
+	}
+	if (tableElementNeeded[11]) {
+		table[11].Set(&table[7]).AddAssign(&table[3])
+	}
+	if (tableElementNeeded[12]) {
+		table[12].Set(&table[11]).AddAssign(&table[0])
+	}
+	if (tableElementNeeded[13]) {
+		table[13].Set(&table[11]).AddAssign(&table[1])
+	}
+	if (tableElementNeeded[14]) {
+		table[14].Set(&table[11]).AddAssign(&table[2])
+	}
+	
+	// bounds on the lattice base vectors guarantee that k1, k2 are len(r)/2 or len(r)/2+1 bits long max
+	// this is because we use a probabilistic scalar decomposition that replaces a division by a right-shift
+	// k1 = k1.SetBigInt(&k[0]).Bits()
+	// k2 = k2.SetBigInt(&k[1]).Bits()
+
+	// we don't target constant-timeness so we check first if we increase the bounds or not
+	// maxBit := k1.BitLen()
+	// if k2.BitLen() > maxBit {
+	// 	maxBit = k2.BitLen()
+	// }
+	// hiWordIndex := (maxBit - 1) / 64
+
+	// loop starts from len(k1)/2 or len(k1)/2+1 due to the bounds
+	for i := hiWordIndex; i >= 0; i-- {
+		mask := uint64(3) << 62
+		for j := 0; j < 32; j++ {
+			res.Double(&res).Double(&res)
+			b1 := (k1[i] & mask) >> (62 - 2*j)
+			b2 := (k2[i] & mask) >> (62 - 2*j)
+			if b1|b2 != 0 {
+				s := (b2<<2 | b1)
+				res.AddAssign(&table[s-1]) 
+			}
+			mask = mask >> 2
+		}
+	}
+
+	p.Set(&res)
+	return p
+}
+
+func PrecomputationForFixedScalarMultiplication(
+	s *big.Int,
+) (*[2]bool, *fr.Element, *fr.Element, *[15]bool, int) {
+
+	var k1, k2 fr.Element
+	var tableElementNeeded [15]bool
+
+	// split the scalar, modifies ±q, ϕ(q) accordingly
+	k := ecc.SplitScalar(s, &glvBasis)
+
+	neg := [2]bool{k[0].Sign() == -1, k[1].Sign() == -1}
+
+	if k[0].Sign() == -1 {
+		k[0].Neg(&k[0])
+	}
+	if k[1].Sign() == -1 {
+		k[1].Neg(&k[1])
+	}
+
+	// bounds on the lattice base vectors guarantee that k1, k2 are len(r)/2 or len(r)/2+1 bits long max
+	// this is because we use a probabilistic scalar decomposition that replaces a division by a right-shift
+	k1 = k1.SetBigInt(&k[0]).Bits()
+	k2 = k2.SetBigInt(&k[1]).Bits()
+
+	// we don't target constant-timeness so we check first if we increase the bounds or not
+	maxBit := k1.BitLen()
+	if k2.BitLen() > maxBit {
+		maxBit = k2.BitLen()
+	}
+	hiWordIndex := (maxBit - 1) / 64
+
+	// loop starts from len(k1)/2 or len(k1)/2+1 due to the bounds
+	for i := hiWordIndex; i >= 0; i-- {
+		mask := uint64(3) << 62
+		for j := 0; j < 32; j++ {
+			b1 := (k1[i] & mask) >> (62 - 2*j)
+			b2 := (k2[i] & mask) >> (62 - 2*j)
+			if b1|b2 != 0 {
+				s := (b2<<2 | b1)
+				tableElementNeeded[s-1] = true
+			}
+			mask = mask >> 2
+		}
+	}
+
+	return &neg, &k1, &k2, &tableElementNeeded, hiWordIndex
 }
 
 // ScalarMultiplicationBase computes and returns p = [s]g
@@ -584,6 +738,8 @@ func (p *G1Jac) mulGLV(q *G1Jac, s *big.Int) *G1Jac {
 	table[12].Set(&table[11]).AddAssign(&table[0])
 	table[13].Set(&table[11]).AddAssign(&table[1])
 	table[14].Set(&table[11]).AddAssign(&table[2])
+
+	fmt.Println(table[3])
 
 	// bounds on the lattice base vectors guarantee that k1, k2 are len(r)/2 or len(r)/2+1 bits long max
 	// this is because we use a probabilistic scalar decomposition that replaces a division by a right-shift
