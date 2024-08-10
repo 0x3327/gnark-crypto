@@ -43,11 +43,11 @@ func Test_ECPDKSAP_FixedScalarMultiplication(t *testing.T) {
 			g := g1Gen
 			s.BigInt(&sInt)
 			op1.ScalarMultiplication(&g, &sInt)
-			neg, k1, k2, tableElementNeeded, hiWordIndex := PrecomputationForFixedScalarMultiplication(s.BigInt(new (big.Int)))
+			neg, k1, k2, tableElementNeeded, hiWordIndex, useMatrix := PrecomputationForFixedScalarMultiplication(s.BigInt(new (big.Int)))
 			var table [15]G1Jac
-			fmt.Println(tableElementNeeded)
-			op2.FixedScalarMultiplication(&g, &table, neg, k1, k2, tableElementNeeded, hiWordIndex)
-			fmt.Println(table[3])
+			fmt.Println("useMatrix", useMatrix[0])
+			op2.FixedScalarMultiplication(&g, &table, neg, k1, k2, tableElementNeeded, hiWordIndex, useMatrix)
+			// fmt.Println(table[3])
 
 			// fmt.Println(op1, op2)
 			return op1.Equal(&op2) 
