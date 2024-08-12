@@ -22,6 +22,7 @@ import (
 	"math/rand"
 	"testing"
 
+	"github.com/consensys/gnark-crypto/ecc"
 	"github.com/consensys/gnark-crypto/ecc/bn254/fp"
 
 	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
@@ -43,7 +44,8 @@ func Test_ECPDKSAP_FixedScalarMultiplication(t *testing.T) {
 			g := g1Gen
 			s.BigInt(&sInt)
 			op1.ScalarMultiplication(&g, &sInt)
-			op2.FixedScalarMultiplication(&g, &sInt)
+			k := ecc.SplitScalar(&sInt, &ecc.Lattice{})
+			op2.FixedScalarMultiplication(&g, &k)
 			return op1.Equal(&op2) 
 
 		},

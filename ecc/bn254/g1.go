@@ -401,6 +401,12 @@ func (p *G1Jac) Double(q *G1Jac) *G1Jac {
 	return p
 }
 
+func (p *G1Jac) FixedDouble(q *G1Jac, YY fp.Element) *G1Jac {
+	p.Set(q)
+	p.FixedDoubleAssign(YY)
+	return p
+}
+
 // DoubleAssign doubles p in Jacobian coordinates.
 //
 // https://hyperelliptic.org/EFD/g1p/auto-shortw-jacobian-3.html#doubling-dbl-2007-bl
@@ -410,6 +416,35 @@ func (p *G1Jac) DoubleAssign() *G1Jac {
 
 	XX.Square(&p.X)
 	YY.Square(&p.Y)
+	YYYY.Square(&YY)
+	ZZ.Square(&p.Z)
+	S.Add(&p.X, &YY)
+	S.Square(&S).
+		Sub(&S, &XX).
+		Sub(&S, &YYYY).
+		Double(&S)
+	M.Double(&XX).Add(&M, &XX)
+	p.Z.Add(&p.Z, &p.Y).
+		Square(&p.Z).
+		Sub(&p.Z, &YY).
+		Sub(&p.Z, &ZZ)
+	T.Square(&M)
+	p.X = T
+	T.Double(&S)
+	p.X.Sub(&p.X, &T)
+	p.Y.Sub(&S, &p.X).
+		Mul(&p.Y, &M)
+	YYYY.Double(&YYYY).Double(&YYYY).Double(&YYYY)
+	p.Y.Sub(&p.Y, &YYYY)
+
+	return p
+}
+
+func (p *G1Jac) FixedDoubleAssign(YY fp.Element) *G1Jac {
+
+	var XX, YYYY, ZZ, S, M, T fp.Element
+
+	XX.Square(&p.X)
 	YYYY.Square(&YY)
 	ZZ.Square(&p.Z)
 	S.Add(&p.X, &YY)
@@ -446,15 +481,82 @@ func (p *G1Jac) ScalarMultiplication(q *G1Jac, s *big.Int) *G1Jac {
 // where p and a are Jacobian points.
 // using the GLV technique.
 // see https://www.iacr.org/archive/crypto2001/21390189.pdf
-func (p *G1Jac) FixedScalarMultiplication(q *G1Jac, s *big.Int) *G1Jac {
-	return p.mulGLV(q, s)
+func (p *G1Jac) FixedScalarMultiplication(q *G1Jac, k *[2]big.Int) *G1Jac {
+	var table [15]G1Jac
+	var res G1Jac
+	var k1, k2 fr.Element
+	var YY_table1, YY_table7, YY_res fp.Element
+
+	res.Set(&g1Infinity)
+
+	// table[b3b2b1b0-1] = b3b2 ⋅ ϕ(q) + b1b0*q
+	table[0].Set(q)
+	table[3].phi(q)
+
+	if k[0].Sign() == -1 {
+		k[0].Neg(&k[0])
+		table[0].Neg(&table[0])
+	}
+	if k[1].Sign() == -1 {
+		k[1].Neg(&k[1])
+		table[3].Neg(&table[3])
+	}
+
+	// precompute table (2 bits sliding window)
+	// table[b3b2b1b0-1] = b3b2 ⋅ ϕ(q) + b1b0 ⋅ q if b3b2b1b0 != 0
+	YY_table1.Square(&table[1].Y)
+	table[1].FixedDouble(&table[0], YY_table1)
+	table[2].Set(&table[1]).AddAssign(&table[0])
+	table[4].Set(&table[3]).AddAssign(&table[0])
+	table[5].Set(&table[3]).AddAssign(&table[1])
+	table[6].Set(&table[3]).AddAssign(&table[2])
+	YY_table7.Square(&table[7].Y)
+	table[7].FixedDouble(&table[3], YY_table7)
+	table[8].Set(&table[7]).AddAssign(&table[0])
+	table[9].Set(&table[7]).AddAssign(&table[1])
+	table[10].Set(&table[7]).AddAssign(&table[2])
+	table[11].Set(&table[7]).AddAssign(&table[3])
+	table[12].Set(&table[11]).AddAssign(&table[0])
+	table[13].Set(&table[11]).AddAssign(&table[1])
+	table[14].Set(&table[11]).AddAssign(&table[2])
+
+	// bounds on the lattice base vectors guarantee that k1, k2 are len(r)/2 or len(r)/2+1 bits long max
+	// this is because we use a probabilistic scalar decomposition that replaces a division by a right-shift
+	k1 = k1.SetBigInt(&k[0]).Bits()
+	k2 = k2.SetBigInt(&k[1]).Bits()
+
+	// we don't target constant-timeness so we check first if we increase the bounds or not
+	maxBit := k1.BitLen()
+	if k2.BitLen() > maxBit {
+		maxBit = k2.BitLen()
+	}
+	hiWordIndex := (maxBit - 1) / 64
+
+	// loop starts from len(k1)/2 or len(k1)/2+1 due to the bounds
+	YY_res.Square(&res.Y)
+	for i := hiWordIndex; i >= 0; i-- {
+		mask := uint64(3) << 62
+		for j := 0; j < 32; j++ {
+			res.FixedDouble(&res, YY_res).FixedDouble(&res, YY_res)
+			b1 := (k1[i] & mask) >> (62 - 2*j)
+			b2 := (k2[i] & mask) >> (62 - 2*j)
+			if b1|b2 != 0 {
+				s := (b2<<2 | b1)
+				res.AddAssign(&table[s-1])
+			}
+			mask = mask >> 2
+		}
+	}
+
+	p.Set(&res)
+	return p
 }
 
 // ScalarMultiplicationBase computes and returns p = [s]g
 // where g is the prime subgroup generator.
 func (p *G1Jac) ScalarMultiplicationBase(s *big.Int) *G1Jac {
 	return p.mulGLV(&g1Gen, s)
-
+	
 }
 
 // String converts p to affine coordinates and returns its string representation E(x,y) or "O" if it is infinity.
