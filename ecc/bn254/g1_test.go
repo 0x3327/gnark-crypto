@@ -32,7 +32,7 @@ import (
 func Test_ECPDKSAP_FixedScalarMultiplication(t *testing.T) {
 	t.Parallel()
 	parameters := gopter.DefaultTestParameters()
-	parameters.MinSuccessfulTests = 10
+	parameters.MinSuccessfulTests = 100
 
 	properties := gopter.NewProperties(parameters)
 
@@ -42,15 +42,51 @@ func Test_ECPDKSAP_FixedScalarMultiplication(t *testing.T) {
 			var sInt big.Int
 			g := g1Gen
 			s.BigInt(&sInt)
+
 			op1.ScalarMultiplication(&g, &sInt)
+
 			neg, k1, k2, tableElementNeeded, hiWordIndex, useMatrix := PrecomputationForFixedScalarMultiplication(s.BigInt(new (big.Int)))
 			var table [15]G1Jac
-			fmt.Println("useMatrix", useMatrix[0])
-			op2.FixedScalarMultiplication(&g, &table, neg, k1, k2, tableElementNeeded, hiWordIndex, useMatrix)
-			// fmt.Println(table[3])
 
-			// fmt.Println(op1, op2)
-			return op1.Equal(&op2) 
+			op2.FixedScalarMultiplication(&g, &table, neg, k1, k2, tableElementNeeded, hiWordIndex, useMatrix)
+
+			if op1.Equal(&op2) == false {
+				fmt.Println(op1, "not same as:", op2)
+			}
+
+			return op1.Equal(&op2)
+		},
+		GenFr(),
+	))
+	properties.TestingRun(t, gopter.ConsoleReporter(false))
+}
+
+func Test_ECPDKSAP_FromJacobianCoordXY (t *testing.T) {
+	t.Parallel()
+	parameters := gopter.DefaultTestParameters()
+	parameters.MinSuccessfulTests = 20
+
+	properties := gopter.NewProperties(parameters)
+
+	properties.Property("FromJacobianCoordX/Y should return same results as FromJacobian", prop.ForAll(
+		func(s fr.Element) bool {
+			var src G1Jac
+			var sInt big.Int
+			g := g1Gen
+			s.BigInt(&sInt)
+			src.ScalarMultiplication(&g, &sInt)
+
+			var a, b *fp.Element
+			var affPt G1Affine
+
+			a, b = affPt.FromJacobianCoordX(&src)
+			affPt.FromJacobianCoordY(a, b, &src)
+
+			var expectedAffPt G1Affine
+
+			expectedAffPt.FromJacobian(&src)
+
+			return affPt.Equal(&expectedAffPt) 
 
 		},
 		GenFr(),

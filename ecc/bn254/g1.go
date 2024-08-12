@@ -176,6 +176,26 @@ func (p *G1Affine) FromJacobian(p1 *G1Jac) *G1Affine {
 	return p
 }
 
+// FromJacobianCoordX converts a point p1 from Jacobian to affine coordinates (not including Y).
+func (p *G1Affine) FromJacobianCoordX(p1 *G1Jac) (*fp.Element, *fp.Element) {
+
+	var a, b fp.Element
+
+	a.Inverse(&p1.Z)
+	b.Square(&a)
+	p.X.Mul(&p1.X, &b)
+
+	return &a, &b
+}
+
+// FromJacobianCoordY must be called after FromJacobianCoordX (finishes point conversion)
+func (p *G1Affine) FromJacobianCoordY(a *fp.Element, b *fp.Element, p1 *G1Jac) *G1Affine {
+
+	p.Y.Mul(&p1.Y, b).Mul(&p.Y, a)
+
+	return p
+}
+
 // String returns the string representation E(x,y) of the affine point p or "O" if it is infinity.
 func (p *G1Affine) String() string {
 	if p.IsInfinity() {
@@ -408,7 +428,8 @@ func (p *G1Jac) DoubleAssign() *G1Jac {
 
 	var XX, YY, YYYY, ZZ, S, M, T fp.Element
 
-	XX.Square(&p.X)
+
+	XX.Square(&p.X)    
 	YY.Square(&p.Y)
 	YYYY.Square(&YY)
 	ZZ.Square(&p.Z)
@@ -430,6 +451,12 @@ func (p *G1Jac) DoubleAssign() *G1Jac {
 		Mul(&p.Y, &M)
 	YYYY.Double(&YYYY).Double(&YYYY).Double(&YYYY)
 	p.Y.Sub(&p.Y, &YYYY)
+
+	// S = (x + y) ** 2 - xx - y**4
+	// M = 3 * x**2
+	// z = (  z + y ) ** 2 - y**2 - zz
+	// x = 9x**4 - 2*S
+	// y = (S-X)*M - (8*yyyy)
 
 	return p
 }
@@ -464,18 +491,6 @@ func (p *G1Jac) FixedScalarMultiplication(
 	// table[b3b2b1b0-1] = b3b2 ⋅ ϕ(q) + b1b0*q
 	table[0].Set(q)
 	table[3].phi(q)
-
-	// split the scalar, modifies ±q, ϕ(q) accordingly
-	// k := ecc.SplitScalar(s, &glvBasis)
-
-	// if k[0].Sign() == -1 {
-	// 	k[0].Neg(&k[0])
-	// 	table[0].Neg(&table[0])
-	// }
-	// if k[1].Sign() == -1 {
-	// 	k[1].Neg(&k[1])
-	// 	table[3].Neg(&table[3])
-	// }
 
 	if neg[0] {
 		table[0].Neg(&table[0])
@@ -526,18 +541,6 @@ func (p *G1Jac) FixedScalarMultiplication(
 		table[14].Set(&table[11]).AddAssign(&table[2])
 	}
 	
-	// bounds on the lattice base vectors guarantee that k1, k2 are len(r)/2 or len(r)/2+1 bits long max
-	// this is because we use a probabilistic scalar decomposition that replaces a division by a right-shift
-	// k1 = k1.SetBigInt(&k[0]).Bits()
-	// k2 = k2.SetBigInt(&k[1]).Bits()
-
-	// we don't target constant-timeness so we check first if we increase the bounds or not
-	// maxBit := k1.BitLen()
-	// if k2.BitLen() > maxBit {
-	// 	maxBit = k2.BitLen()
-	// }
-	// hiWordIndex := (maxBit - 1) / 64
-
 	// loop starts from len(k1)/2 or len(k1)/2+1 due to the bounds
 	for i := hiWordIndex; i >= 0; i-- {
 		for j := 0; j < 32; j++ {
@@ -554,7 +557,14 @@ func (p *G1Jac) FixedScalarMultiplication(
 
 func PrecomputationForFixedScalarMultiplication(
 	s *big.Int,
-) (*[2]bool, *fr.Element, *fr.Element, *[15]bool, int, *[512][32][2]uint64) {
+) (
+	*[2]bool, 
+	*fr.Element, 
+	*fr.Element, 
+	*[15]bool, 
+	int, 
+	*[512][32][2]uint64,
+) {
 
 	var k1, k2 fr.Element
 	var tableElementNeeded [15]bool
@@ -738,8 +748,6 @@ func (p *G1Jac) mulGLV(q *G1Jac, s *big.Int) *G1Jac {
 	table[12].Set(&table[11]).AddAssign(&table[0])
 	table[13].Set(&table[11]).AddAssign(&table[1])
 	table[14].Set(&table[11]).AddAssign(&table[2])
-
-	// fmt.Println(table[3])
 
 	// bounds on the lattice base vectors guarantee that k1, k2 are len(r)/2 or len(r)/2+1 bits long max
 	// this is because we use a probabilistic scalar decomposition that replaces a division by a right-shift
