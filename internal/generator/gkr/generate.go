@@ -1,9 +1,10 @@
 package gkr
 
 import (
-	"github.com/consensys/bavard"
-	"github.com/consensys/gnark-crypto/internal/generator/config"
 	"path/filepath"
+
+	"github.com/0x3327/gnark-crypto/internal/generator/config"
+	"github.com/consensys/bavard"
 )
 
 type Config struct {

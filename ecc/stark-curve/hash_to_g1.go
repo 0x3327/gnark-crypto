@@ -17,7 +17,7 @@
 package starkcurve
 
 import (
-	"github.com/consensys/gnark-crypto/ecc/stark-curve/fp"
+	"github.com/0x3327/gnark-crypto/ecc/stark-curve/fp"
 )
 
 // MapToCurve1 implements the Shallue and van de Woestijne method, applicable to any elliptic curve in Weierstrass form

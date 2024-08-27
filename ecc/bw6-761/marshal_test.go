@@ -27,9 +27,9 @@ import (
 	"github.com/leanovate/gopter"
 	"github.com/leanovate/gopter/prop"
 
-	"github.com/consensys/gnark-crypto/ecc/bw6-761/fp"
-	"github.com/consensys/gnark-crypto/ecc/bw6-761/fr"
-	"github.com/consensys/gnark-crypto/ecc/bw6-761/internal/fptower"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-761/fp"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-761/fr"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-761/internal/fptower"
 )
 
 const (

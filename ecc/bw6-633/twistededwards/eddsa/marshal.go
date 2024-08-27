@@ -19,8 +19,8 @@ package eddsa
 import (
 	"crypto/subtle"
 	"errors"
-	"github.com/consensys/gnark-crypto/ecc/bw6-633/fr"
-	"github.com/consensys/gnark-crypto/ecc/bw6-633/twistededwards"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-633/fr"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-633/twistededwards"
 	"io"
 	"math/big"
 )

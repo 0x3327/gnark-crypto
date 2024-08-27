@@ -19,9 +19,9 @@ package pedersen
 import (
 	"crypto/rand"
 	"errors"
-	"github.com/consensys/gnark-crypto/ecc"
-	curve "github.com/consensys/gnark-crypto/ecc/bls12-377"
-	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr"
+	"github.com/0x3327/gnark-crypto/ecc"
+	curve "github.com/0x3327/gnark-crypto/ecc/bls12-377"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-377/fr"
 	"io"
 	"math/big"
 )
@@ -118,7 +118,7 @@ func (pk *ProvingKey) ProveKnowledge(values []fr.Element) (pok curve.G1Affine, e
 	}
 
 	// TODO @gbotrel this will spawn more than one task, see
-	// https://github.com/ConsenSys/gnark-crypto/issues/269
+	// https://github.com/0x3327/gnark-crypto/issues/269
 	config := ecc.MultiExpConfig{
 		NbTasks: 1, // TODO Experiment
 	}
@@ -136,7 +136,7 @@ func (pk *ProvingKey) Commit(values []fr.Element) (commitment curve.G1Affine, er
 	}
 
 	// TODO @gbotrel this will spawn more than one task, see
-	// https://github.com/ConsenSys/gnark-crypto/issues/269
+	// https://github.com/0x3327/gnark-crypto/issues/269
 	config := ecc.MultiExpConfig{
 		NbTasks: 1,
 	}
@@ -197,7 +197,7 @@ func BatchProve(pk []ProvingKey, values [][]fr.Element, combinationCoeff fr.Elem
 	}
 
 	// TODO @gbotrel this will spawn more than one task, see
-	// https://github.com/ConsenSys/gnark-crypto/issues/269
+	// https://github.com/0x3327/gnark-crypto/issues/269
 	config := ecc.MultiExpConfig{
 		NbTasks: 1,
 	}
@@ -238,7 +238,7 @@ func FoldCommitments(commitments []curve.G1Affine, combinationCoeff fr.Element) 
 	}
 
 	// TODO @gbotrel this will spawn more than one task, see
-	// https://github.com/ConsenSys/gnark-crypto/issues/269
+	// https://github.com/0x3327/gnark-crypto/issues/269
 	config := ecc.MultiExpConfig{
 		NbTasks: 1,
 	}

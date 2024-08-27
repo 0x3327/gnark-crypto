@@ -20,7 +20,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/consensys/gnark-crypto/ecc/bls12-381/fp"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-381/fp"
 	"github.com/leanovate/gopter"
 	"github.com/leanovate/gopter/prop"
 )

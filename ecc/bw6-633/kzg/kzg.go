@@ -22,12 +22,12 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/consensys/gnark-crypto/ecc"
-	"github.com/consensys/gnark-crypto/ecc/bw6-633"
-	"github.com/consensys/gnark-crypto/ecc/bw6-633/fr"
-	"github.com/consensys/gnark-crypto/fiat-shamir"
+	"github.com/0x3327/gnark-crypto/ecc"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-633"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-633/fr"
+	"github.com/0x3327/gnark-crypto/fiat-shamir"
 
-	"github.com/consensys/gnark-crypto/internal/parallel"
+	"github.com/0x3327/gnark-crypto/internal/parallel"
 )
 
 var (

@@ -23,10 +23,10 @@ import (
 	"math/bits"
 	"sort"
 
-	"github.com/consensys/gnark-crypto/ecc/bw6-756/fr"
-	"github.com/consensys/gnark-crypto/ecc/bw6-756/fr/fft"
-	"github.com/consensys/gnark-crypto/ecc/bw6-756/kzg"
-	fiatshamir "github.com/consensys/gnark-crypto/fiat-shamir"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-756/fr"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-756/fr/fft"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-756/kzg"
+	fiatshamir "github.com/0x3327/gnark-crypto/fiat-shamir"
 )
 
 var (

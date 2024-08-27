@@ -22,10 +22,10 @@ import (
 	"math/big"
 	"math/bits"
 
+	"github.com/0x3327/gnark-crypto/ecc/bn254/fr"
+	"github.com/0x3327/gnark-crypto/ecc/bn254/fr/fft"
+	"github.com/0x3327/gnark-crypto/internal/parallel"
 	"github.com/bits-and-blooms/bitset"
-	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
-	"github.com/consensys/gnark-crypto/ecc/bn254/fr/fft"
-	"github.com/consensys/gnark-crypto/internal/parallel"
 	"golang.org/x/crypto/blake2b"
 )
 

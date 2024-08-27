@@ -26,8 +26,8 @@ import (
 	"github.com/leanovate/gopter"
 	"github.com/leanovate/gopter/prop"
 
-	"github.com/consensys/gnark-crypto/ecc/stark-curve/fp"
-	"github.com/consensys/gnark-crypto/ecc/stark-curve/fr"
+	"github.com/0x3327/gnark-crypto/ecc/stark-curve/fp"
+	"github.com/0x3327/gnark-crypto/ecc/stark-curve/fr"
 )
 
 func TestEncoder(t *testing.T) {

@@ -23,10 +23,10 @@ import (
 	"reflect"
 	"sync/atomic"
 
-	"github.com/consensys/gnark-crypto/ecc/bls12-381/fp"
-	"github.com/consensys/gnark-crypto/ecc/bls12-381/fr"
-	"github.com/consensys/gnark-crypto/ecc/bls12-381/internal/fptower"
-	"github.com/consensys/gnark-crypto/internal/parallel"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-381/fp"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-381/fr"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-381/internal/fptower"
+	"github.com/0x3327/gnark-crypto/internal/parallel"
 )
 
 // To encode G1Affine and G2Affine points, we mask the most significant bits with these bits to specify without ambiguity

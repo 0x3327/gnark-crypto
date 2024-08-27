@@ -17,10 +17,10 @@
 package bls12378
 
 import (
-	"github.com/consensys/gnark-crypto/ecc"
-	"github.com/consensys/gnark-crypto/ecc/bls12-378/fp"
-	"github.com/consensys/gnark-crypto/ecc/bls12-378/fr"
-	"github.com/consensys/gnark-crypto/internal/parallel"
+	"github.com/0x3327/gnark-crypto/ecc"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-378/fp"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-378/fr"
+	"github.com/0x3327/gnark-crypto/internal/parallel"
 	"math/big"
 	"runtime"
 )

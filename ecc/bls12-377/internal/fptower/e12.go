@@ -18,9 +18,9 @@ package fptower
 
 import (
 	"errors"
-	"github.com/consensys/gnark-crypto/ecc"
-	"github.com/consensys/gnark-crypto/ecc/bls12-377/fp"
-	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr"
+	"github.com/0x3327/gnark-crypto/ecc"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-377/fp"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-377/fr"
 	"math/big"
 	"sync"
 )

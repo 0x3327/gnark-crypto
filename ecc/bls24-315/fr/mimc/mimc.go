@@ -20,7 +20,7 @@ import (
 	"errors"
 	"hash"
 
-	"github.com/consensys/gnark-crypto/ecc/bls24-315/fr"
+	"github.com/0x3327/gnark-crypto/ecc/bls24-315/fr"
 	"golang.org/x/crypto/sha3"
 	"math/big"
 	"sync"

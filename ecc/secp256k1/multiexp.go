@@ -18,9 +18,9 @@ package secp256k1
 
 import (
 	"errors"
-	"github.com/consensys/gnark-crypto/ecc"
-	"github.com/consensys/gnark-crypto/ecc/secp256k1/fr"
-	"github.com/consensys/gnark-crypto/internal/parallel"
+	"github.com/0x3327/gnark-crypto/ecc"
+	"github.com/0x3327/gnark-crypto/ecc/secp256k1/fr"
+	"github.com/0x3327/gnark-crypto/internal/parallel"
 	"math"
 	"runtime"
 )

@@ -17,8 +17,8 @@ package bw6756
 import (
 	"errors"
 
-	"github.com/consensys/gnark-crypto/ecc/bw6-756/fp"
-	"github.com/consensys/gnark-crypto/ecc/bw6-756/internal/fptower"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-756/fp"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-756/internal/fptower"
 )
 
 // GT target group of the pairing

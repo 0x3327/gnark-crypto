@@ -17,7 +17,7 @@
 package mimc
 
 import (
-	"github.com/consensys/gnark-crypto/ecc/bw6-633/fr"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-633/fr"
 )
 
 // Option defines option for altering the behavior of the MiMC hasher.

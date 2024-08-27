@@ -28,5 +28,5 @@ package hash_to_field
 import (
 	_ "hash"
 
-	_ "github.com/consensys/gnark-crypto/ecc/bls12-377/fr"
+	_ "github.com/0x3327/gnark-crypto/ecc/bls12-377/fr"
 )

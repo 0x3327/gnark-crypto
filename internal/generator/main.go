@@ -7,30 +7,30 @@ import (
 	"path/filepath"
 	"sync"
 
+	"github.com/0x3327/gnark-crypto/field/generator"
+	field "github.com/0x3327/gnark-crypto/field/generator/config"
+	"github.com/0x3327/gnark-crypto/internal/generator/config"
+	"github.com/0x3327/gnark-crypto/internal/generator/crypto/hash/mimc"
+	"github.com/0x3327/gnark-crypto/internal/generator/ecc"
+	"github.com/0x3327/gnark-crypto/internal/generator/ecdsa"
+	"github.com/0x3327/gnark-crypto/internal/generator/edwards"
+	"github.com/0x3327/gnark-crypto/internal/generator/edwards/eddsa"
+	"github.com/0x3327/gnark-crypto/internal/generator/fft"
+	fri "github.com/0x3327/gnark-crypto/internal/generator/fri/template"
+	"github.com/0x3327/gnark-crypto/internal/generator/gkr"
+	"github.com/0x3327/gnark-crypto/internal/generator/hash_to_field"
+	"github.com/0x3327/gnark-crypto/internal/generator/iop"
+	"github.com/0x3327/gnark-crypto/internal/generator/kzg"
+	"github.com/0x3327/gnark-crypto/internal/generator/pairing"
+	"github.com/0x3327/gnark-crypto/internal/generator/pedersen"
+	"github.com/0x3327/gnark-crypto/internal/generator/permutation"
+	"github.com/0x3327/gnark-crypto/internal/generator/plookup"
+	"github.com/0x3327/gnark-crypto/internal/generator/polynomial"
+	"github.com/0x3327/gnark-crypto/internal/generator/sis"
+	"github.com/0x3327/gnark-crypto/internal/generator/sumcheck"
+	"github.com/0x3327/gnark-crypto/internal/generator/test_vector_utils"
+	"github.com/0x3327/gnark-crypto/internal/generator/tower"
 	"github.com/consensys/bavard"
-	"github.com/consensys/gnark-crypto/field/generator"
-	field "github.com/consensys/gnark-crypto/field/generator/config"
-	"github.com/consensys/gnark-crypto/internal/generator/config"
-	"github.com/consensys/gnark-crypto/internal/generator/crypto/hash/mimc"
-	"github.com/consensys/gnark-crypto/internal/generator/ecc"
-	"github.com/consensys/gnark-crypto/internal/generator/ecdsa"
-	"github.com/consensys/gnark-crypto/internal/generator/edwards"
-	"github.com/consensys/gnark-crypto/internal/generator/edwards/eddsa"
-	"github.com/consensys/gnark-crypto/internal/generator/fft"
-	fri "github.com/consensys/gnark-crypto/internal/generator/fri/template"
-	"github.com/consensys/gnark-crypto/internal/generator/gkr"
-	"github.com/consensys/gnark-crypto/internal/generator/hash_to_field"
-	"github.com/consensys/gnark-crypto/internal/generator/iop"
-	"github.com/consensys/gnark-crypto/internal/generator/kzg"
-	"github.com/consensys/gnark-crypto/internal/generator/pairing"
-	"github.com/consensys/gnark-crypto/internal/generator/pedersen"
-	"github.com/consensys/gnark-crypto/internal/generator/permutation"
-	"github.com/consensys/gnark-crypto/internal/generator/plookup"
-	"github.com/consensys/gnark-crypto/internal/generator/polynomial"
-	"github.com/consensys/gnark-crypto/internal/generator/sis"
-	"github.com/consensys/gnark-crypto/internal/generator/sumcheck"
-	"github.com/consensys/gnark-crypto/internal/generator/test_vector_utils"
-	"github.com/consensys/gnark-crypto/internal/generator/tower"
 )
 
 const (
@@ -112,7 +112,7 @@ func main() {
 			assertNoError(mimc.Generate(conf, filepath.Join(curveDir, "fr", "mimc"), bgen))
 
 			frInfo := config.FieldDependency{
-				FieldPackagePath: "github.com/consensys/gnark-crypto/ecc/" + conf.Name + "/fr",
+				FieldPackagePath: "github.com/0x3327/gnark-crypto/ecc/" + conf.Name + "/fr",
 				FieldPackageName: "fr",
 				ElementType:      "fr.Element",
 			}
@@ -143,7 +143,7 @@ func main() {
 			assertNoError(iop.Generate(conf, filepath.Join(curveDir, "fr", "iop"), bgen))
 
 			fpInfo := config.FieldDependency{
-				FieldPackagePath: "github.com/consensys/gnark-crypto/ecc/" + conf.Name + "/fp",
+				FieldPackagePath: "github.com/0x3327/gnark-crypto/ecc/" + conf.Name + "/fp",
 				FieldPackageName: "fp",
 				ElementType:      "fp.Element",
 			}

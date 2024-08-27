@@ -18,9 +18,9 @@ package pedersen
 
 import (
 	"fmt"
-	curve "github.com/consensys/gnark-crypto/ecc/bls12-377"
-	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr"
-	"github.com/consensys/gnark-crypto/utils/testutils"
+	curve "github.com/0x3327/gnark-crypto/ecc/bls12-377"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-377/fr"
+	"github.com/0x3327/gnark-crypto/utils/testutils"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )

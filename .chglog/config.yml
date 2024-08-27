@@ -2,7 +2,7 @@ style: github
 template: CHANGELOG.tpl.md
 info:
   title: CHANGELOG
-  repository_url: https://github.com/ConsenSys/gnark-crypto
+  repository_url: https://github.com/0x3327/gnark-crypto
 options:
   commits:
     # filters:

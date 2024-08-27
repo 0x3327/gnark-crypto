@@ -17,12 +17,12 @@
 package fft
 
 import (
-	"github.com/consensys/gnark-crypto/ecc"
-	"github.com/consensys/gnark-crypto/internal/parallel"
+	"github.com/0x3327/gnark-crypto/ecc"
+	"github.com/0x3327/gnark-crypto/internal/parallel"
 	"math/big"
 	"math/bits"
 
-	"github.com/consensys/gnark-crypto/ecc/bls24-317/fr"
+	"github.com/0x3327/gnark-crypto/ecc/bls24-317/fr"
 )
 
 // Decimation is used in the FFT call to select decimation in time or in frequency

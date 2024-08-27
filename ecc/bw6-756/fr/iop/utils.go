@@ -17,7 +17,7 @@
 package iop
 
 import (
-	"github.com/consensys/gnark-crypto/ecc/bw6-756/fr"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-756/fr"
 )
 
 //----------------------------------------------------

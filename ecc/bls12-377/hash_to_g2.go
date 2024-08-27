@@ -17,8 +17,8 @@
 package bls12377
 
 import (
-	"github.com/consensys/gnark-crypto/ecc/bls12-377/fp"
-	"github.com/consensys/gnark-crypto/ecc/bls12-377/internal/fptower"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-377/fp"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-377/internal/fptower"
 
 	"math/big"
 )

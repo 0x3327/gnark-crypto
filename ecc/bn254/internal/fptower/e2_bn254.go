@@ -15,7 +15,7 @@
 package fptower
 
 import (
-	"github.com/consensys/gnark-crypto/ecc/bn254/fp"
+	"github.com/0x3327/gnark-crypto/ecc/bn254/fp"
 )
 
 // declaring nonResInverse as global makes MulByNonResInv inlinable

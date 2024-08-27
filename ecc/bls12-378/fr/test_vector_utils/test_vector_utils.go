@@ -18,8 +18,8 @@ package test_vector_utils
 
 import (
 	"fmt"
-	"github.com/consensys/gnark-crypto/ecc/bls12-378/fr"
-	"github.com/consensys/gnark-crypto/ecc/bls12-378/fr/polynomial"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-378/fr"
+	"github.com/0x3327/gnark-crypto/ecc/bls12-378/fr/polynomial"
 	"hash"
 	"reflect"
 	"strings"

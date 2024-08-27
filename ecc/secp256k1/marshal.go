@@ -20,7 +20,7 @@ import (
 	"errors"
 	"io"
 
-	"github.com/consensys/gnark-crypto/ecc/secp256k1/fp"
+	"github.com/0x3327/gnark-crypto/ecc/secp256k1/fp"
 )
 
 // SizeOfG1AffineCompressed represents the size in bytes that a G1Affine need in binary form, compressed

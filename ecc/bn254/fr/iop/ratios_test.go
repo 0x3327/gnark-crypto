@@ -19,8 +19,8 @@ package iop
 import (
 	"testing"
 
-	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
-	"github.com/consensys/gnark-crypto/ecc/bn254/fr/fft"
+	"github.com/0x3327/gnark-crypto/ecc/bn254/fr"
+	"github.com/0x3327/gnark-crypto/ecc/bn254/fr/fft"
 )
 
 // getPermutation returns a deterministic permutation

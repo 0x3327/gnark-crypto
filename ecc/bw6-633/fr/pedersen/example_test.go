@@ -20,8 +20,8 @@ import (
 	"crypto/rand"
 	"fmt"
 
-	curve "github.com/consensys/gnark-crypto/ecc/bw6-633"
-	"github.com/consensys/gnark-crypto/ecc/bw6-633/fr"
+	curve "github.com/0x3327/gnark-crypto/ecc/bw6-633"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-633/fr"
 )
 
 // This example demonstrates how to use the Pedersen commitment scheme

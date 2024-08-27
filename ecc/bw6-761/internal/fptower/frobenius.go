@@ -15,7 +15,7 @@
 package fptower
 
 import (
-	"github.com/consensys/gnark-crypto/ecc/bw6-761/fp"
+	"github.com/0x3327/gnark-crypto/ecc/bw6-761/fp"
 )
 
 var _frobA = fp.Element{

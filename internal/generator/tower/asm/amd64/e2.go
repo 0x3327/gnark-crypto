@@ -17,11 +17,11 @@ package amd64
 import (
 	"io"
 
+	"github.com/0x3327/gnark-crypto/field/generator/asm/amd64"
+	field "github.com/0x3327/gnark-crypto/field/generator/config"
+	"github.com/0x3327/gnark-crypto/internal/generator/config"
 	"github.com/consensys/bavard"
 	ramd64 "github.com/consensys/bavard/amd64"
-	"github.com/consensys/gnark-crypto/field/generator/asm/amd64"
-	field "github.com/consensys/gnark-crypto/field/generator/config"
-	"github.com/consensys/gnark-crypto/internal/generator/config"
 )
 
 // Fq2Amd64 ...

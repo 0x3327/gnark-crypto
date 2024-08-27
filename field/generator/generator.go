@@ -9,11 +9,11 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/0x3327/gnark-crypto/field/generator/asm/amd64"
+	"github.com/0x3327/gnark-crypto/field/generator/config"
+	"github.com/0x3327/gnark-crypto/field/generator/internal/addchain"
+	"github.com/0x3327/gnark-crypto/field/generator/internal/templates/element"
 	"github.com/consensys/bavard"
-	"github.com/consensys/gnark-crypto/field/generator/asm/amd64"
-	"github.com/consensys/gnark-crypto/field/generator/config"
-	"github.com/consensys/gnark-crypto/field/generator/internal/addchain"
-	"github.com/consensys/gnark-crypto/field/generator/internal/templates/element"
 )
 
 // GenerateFF will generate go (and .s) files in outputDir for modulus (in base 10)

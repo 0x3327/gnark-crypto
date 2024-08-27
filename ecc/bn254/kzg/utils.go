@@ -22,10 +22,10 @@ import (
 	"math/bits"
 	"runtime"
 
-	"github.com/consensys/gnark-crypto/ecc"
-	curve "github.com/consensys/gnark-crypto/ecc/bn254"
-	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
-	"github.com/consensys/gnark-crypto/internal/parallel"
+	"github.com/0x3327/gnark-crypto/ecc"
+	curve "github.com/0x3327/gnark-crypto/ecc/bn254"
+	"github.com/0x3327/gnark-crypto/ecc/bn254/fr"
+	"github.com/0x3327/gnark-crypto/internal/parallel"
 )
 
 // ToLagrangeG1 in place transform of coeffs canonical form into Lagrange form.
