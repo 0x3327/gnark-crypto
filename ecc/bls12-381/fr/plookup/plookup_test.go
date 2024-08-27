@@ -20,8 +20,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/0x3327/gnark-crypto/ecc/bls12-381/fr"
-	"github.com/0x3327/gnark-crypto/ecc/bls12-381/kzg"
+	"github.com/consensys/gnark-crypto/ecc/bls12-381/fr"
+	"github.com/consensys/gnark-crypto/ecc/bls12-381/kzg"
 )
 
 func TestLookupVector(t *testing.T) {

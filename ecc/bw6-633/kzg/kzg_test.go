@@ -24,12 +24,12 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/0x3327/gnark-crypto/ecc"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-633"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-633/fr"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-633/fr/fft"
+	"github.com/consensys/gnark-crypto/ecc"
+	"github.com/consensys/gnark-crypto/ecc/bw6-633"
+	"github.com/consensys/gnark-crypto/ecc/bw6-633/fr"
+	"github.com/consensys/gnark-crypto/ecc/bw6-633/fr/fft"
 
-	"github.com/0x3327/gnark-crypto/utils/testutils"
+	"github.com/consensys/gnark-crypto/utils/testutils"
 )
 
 // Test SRS re-used across tests of the KZG scheme

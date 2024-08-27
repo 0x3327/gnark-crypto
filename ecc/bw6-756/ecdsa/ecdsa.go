@@ -26,10 +26,10 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/0x3327/gnark-crypto/ecc/bw6-756"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-756/fp"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-756/fr"
-	"github.com/0x3327/gnark-crypto/signature"
+	"github.com/consensys/gnark-crypto/ecc/bw6-756"
+	"github.com/consensys/gnark-crypto/ecc/bw6-756/fp"
+	"github.com/consensys/gnark-crypto/ecc/bw6-756/fr"
+	"github.com/consensys/gnark-crypto/signature"
 )
 
 const (

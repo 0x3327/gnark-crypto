@@ -19,9 +19,9 @@ import (
 	"math/big"
 	"sync"
 
-	"github.com/0x3327/gnark-crypto/ecc"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-756/fp"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-756/fr"
+	"github.com/consensys/gnark-crypto/ecc"
+	"github.com/consensys/gnark-crypto/ecc/bw6-756/fp"
+	"github.com/consensys/gnark-crypto/ecc/bw6-756/fr"
 )
 
 var bigIntPool = sync.Pool{

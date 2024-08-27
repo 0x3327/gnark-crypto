@@ -19,8 +19,8 @@ package iop
 import (
 	"testing"
 
-	"github.com/0x3327/gnark-crypto/ecc/bls12-381/fr"
-	"github.com/0x3327/gnark-crypto/ecc/bls12-381/fr/fft"
+	"github.com/consensys/gnark-crypto/ecc/bls12-381/fr"
+	"github.com/consensys/gnark-crypto/ecc/bls12-381/fr/fft"
 
 	"github.com/stretchr/testify/require"
 

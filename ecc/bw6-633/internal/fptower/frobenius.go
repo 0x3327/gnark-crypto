@@ -15,7 +15,7 @@
 package fptower
 
 import (
-	"github.com/0x3327/gnark-crypto/ecc/bw6-633/fp"
+	"github.com/consensys/gnark-crypto/ecc/bw6-633/fp"
 )
 
 // Frobenius set z in E6 to Frobenius(x), return z

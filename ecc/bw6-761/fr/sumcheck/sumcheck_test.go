@@ -18,10 +18,10 @@ package sumcheck
 
 import (
 	"fmt"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-761/fr"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-761/fr/polynomial"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-761/fr/test_vector_utils"
-	fiatshamir "github.com/0x3327/gnark-crypto/fiat-shamir"
+	"github.com/consensys/gnark-crypto/ecc/bw6-761/fr"
+	"github.com/consensys/gnark-crypto/ecc/bw6-761/fr/polynomial"
+	"github.com/consensys/gnark-crypto/ecc/bw6-761/fr/test_vector_utils"
+	fiatshamir "github.com/consensys/gnark-crypto/fiat-shamir"
 	"github.com/stretchr/testify/assert"
 	"hash"
 	"math/bits"

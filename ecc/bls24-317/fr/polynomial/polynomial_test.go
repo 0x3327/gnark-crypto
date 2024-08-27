@@ -17,7 +17,7 @@
 package polynomial
 
 import (
-	"github.com/0x3327/gnark-crypto/ecc/bls24-317/fr"
+	"github.com/consensys/gnark-crypto/ecc/bls24-317/fr"
 	"github.com/stretchr/testify/assert"
 	"math/big"
 	"testing"

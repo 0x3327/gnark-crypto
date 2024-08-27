@@ -1,13 +1,12 @@
 package test_vector_utils
 
 import (
-	"path/filepath"
-
-	"github.com/0x3327/gnark-crypto/internal/generator/config"
-	"github.com/0x3327/gnark-crypto/internal/generator/gkr"
-	"github.com/0x3327/gnark-crypto/internal/generator/polynomial"
-	"github.com/0x3327/gnark-crypto/internal/generator/sumcheck"
 	"github.com/consensys/bavard"
+	"github.com/consensys/gnark-crypto/internal/generator/config"
+	"github.com/consensys/gnark-crypto/internal/generator/gkr"
+	"github.com/consensys/gnark-crypto/internal/generator/polynomial"
+	"github.com/consensys/gnark-crypto/internal/generator/sumcheck"
+	"path/filepath"
 )
 
 type Config struct {
@@ -18,7 +17,7 @@ type Config struct {
 func GenerateRationals(bgen *bavard.BatchGenerator) error {
 	gkrConf := gkr.Config{
 		FieldDependency: config.FieldDependency{
-			FieldPackagePath: "github.com/0x3327/gnark-crypto/internal/generator/test_vector_utils/small_rational",
+			FieldPackagePath: "github.com/consensys/gnark-crypto/internal/generator/test_vector_utils/small_rational",
 			FieldPackageName: "small_rational",
 			ElementType:      "small_rational.SmallRational",
 		},

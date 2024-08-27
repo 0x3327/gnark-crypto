@@ -27,10 +27,10 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/0x3327/gnark-crypto/ecc/secp256k1"
-	"github.com/0x3327/gnark-crypto/ecc/secp256k1/fp"
-	"github.com/0x3327/gnark-crypto/ecc/secp256k1/fr"
-	"github.com/0x3327/gnark-crypto/signature"
+	"github.com/consensys/gnark-crypto/ecc/secp256k1"
+	"github.com/consensys/gnark-crypto/ecc/secp256k1/fp"
+	"github.com/consensys/gnark-crypto/ecc/secp256k1/fr"
+	"github.com/consensys/gnark-crypto/signature"
 )
 
 const (

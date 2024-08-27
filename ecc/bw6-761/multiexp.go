@@ -18,9 +18,9 @@ package bw6761
 
 import (
 	"errors"
-	"github.com/0x3327/gnark-crypto/ecc"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-761/fr"
-	"github.com/0x3327/gnark-crypto/internal/parallel"
+	"github.com/consensys/gnark-crypto/ecc"
+	"github.com/consensys/gnark-crypto/ecc/bw6-761/fr"
+	"github.com/consensys/gnark-crypto/internal/parallel"
 	"math"
 	"runtime"
 )

@@ -32,9 +32,9 @@ package bw6633
 import (
 	"math/big"
 
-	"github.com/0x3327/gnark-crypto/ecc"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-633/fp"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-633/fr"
+	"github.com/consensys/gnark-crypto/ecc"
+	"github.com/consensys/gnark-crypto/ecc/bw6-633/fp"
+	"github.com/consensys/gnark-crypto/ecc/bw6-633/fr"
 )
 
 // ID BW6_633 ID

@@ -18,10 +18,10 @@ package bls12377
 
 import (
 	"crypto/rand"
-	"github.com/0x3327/gnark-crypto/ecc"
-	"github.com/0x3327/gnark-crypto/ecc/bls12-377/fr"
-	"github.com/0x3327/gnark-crypto/ecc/bls12-377/internal/fptower"
-	"github.com/0x3327/gnark-crypto/internal/parallel"
+	"github.com/consensys/gnark-crypto/ecc"
+	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr"
+	"github.com/consensys/gnark-crypto/ecc/bls12-377/internal/fptower"
+	"github.com/consensys/gnark-crypto/internal/parallel"
 	"math/big"
 	"runtime"
 )

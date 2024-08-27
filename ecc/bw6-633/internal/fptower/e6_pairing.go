@@ -1,6 +1,6 @@
 package fptower
 
-import "github.com/0x3327/gnark-crypto/ecc/bw6-633/fp"
+import "github.com/consensys/gnark-crypto/ecc/bw6-633/fp"
 
 func (z *E6) nSquare(n int) {
 	for i := 0; i < n; i++ {

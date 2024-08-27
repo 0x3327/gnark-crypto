@@ -20,7 +20,7 @@ import (
 	"math/bits"
 	"runtime"
 
-	"github.com/0x3327/gnark-crypto/ecc/bls24-317/fr"
+	"github.com/consensys/gnark-crypto/ecc/bls24-317/fr"
 )
 
 // BitReverse applies the bit-reversal permutation to v.

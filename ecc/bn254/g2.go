@@ -18,10 +18,10 @@ package bn254
 
 import (
 	"crypto/rand"
-	"github.com/0x3327/gnark-crypto/ecc"
-	"github.com/0x3327/gnark-crypto/ecc/bn254/fr"
-	"github.com/0x3327/gnark-crypto/ecc/bn254/internal/fptower"
-	"github.com/0x3327/gnark-crypto/internal/parallel"
+	"github.com/consensys/gnark-crypto/ecc"
+	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
+	"github.com/consensys/gnark-crypto/ecc/bn254/internal/fptower"
+	"github.com/consensys/gnark-crypto/internal/parallel"
 	"math/big"
 	"runtime"
 )

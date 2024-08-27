@@ -17,8 +17,8 @@ package fptower
 import (
 	"math/big"
 
-	"github.com/0x3327/gnark-crypto/ecc"
-	"github.com/0x3327/gnark-crypto/ecc/bw6-756/fr"
+	"github.com/consensys/gnark-crypto/ecc"
+	"github.com/consensys/gnark-crypto/ecc/bw6-756/fr"
 )
 
 // t-1

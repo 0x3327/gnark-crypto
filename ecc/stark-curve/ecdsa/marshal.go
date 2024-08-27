@@ -19,11 +19,11 @@ package ecdsa
 import (
 	"crypto/subtle"
 	"errors"
-	"github.com/0x3327/gnark-crypto/ecc/stark-curve/fr"
+	"github.com/consensys/gnark-crypto/ecc/stark-curve/fr"
 	"io"
 	"math/big"
 
-	"github.com/0x3327/gnark-crypto/ecc/stark-curve"
+	"github.com/consensys/gnark-crypto/ecc/stark-curve"
 )
 
 var errWrongSize = errors.New("wrong size buffer")

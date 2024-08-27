@@ -23,7 +23,7 @@ import (
 	"github.com/leanovate/gopter"
 	"github.com/leanovate/gopter/prop"
 
-	"github.com/0x3327/gnark-crypto/ecc/secp256k1/fp"
+	"github.com/consensys/gnark-crypto/ecc/secp256k1/fp"
 )
 
 func TestG1AffineSerialization(t *testing.T) {

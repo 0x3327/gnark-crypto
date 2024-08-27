@@ -17,8 +17,8 @@
 package bn254
 
 import (
-	"github.com/0x3327/gnark-crypto/ecc/bn254/fp"
-	"github.com/0x3327/gnark-crypto/ecc/bn254/internal/fptower"
+	"github.com/consensys/gnark-crypto/ecc/bn254/fp"
+	"github.com/consensys/gnark-crypto/ecc/bn254/internal/fptower"
 )
 
 // MapToCurve2 implements the Shallue and van de Woestijne method, applicable to any elliptic curve in Weierstrass form

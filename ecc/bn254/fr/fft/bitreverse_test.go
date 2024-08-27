@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/0x3327/gnark-crypto/ecc/bn254/fr"
+	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
 )
 
 type bitReverseVariant struct {

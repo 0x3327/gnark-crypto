@@ -24,11 +24,11 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/0x3327/gnark-crypto/ecc/bls12-378/fr"
+	"github.com/consensys/gnark-crypto/ecc/bls12-378/fr"
 
-	curve "github.com/0x3327/gnark-crypto/ecc/bls12-378"
+	curve "github.com/consensys/gnark-crypto/ecc/bls12-378"
 
-	"github.com/0x3327/gnark-crypto/ecc"
+	"github.com/consensys/gnark-crypto/ecc"
 )
 
 // Domain with a power of 2 cardinality

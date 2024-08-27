@@ -19,7 +19,7 @@ package ecdsa
 import (
 	"crypto/subtle"
 	"errors"
-	"github.com/0x3327/gnark-crypto/ecc/bls12-381/fr"
+	"github.com/consensys/gnark-crypto/ecc/bls12-381/fr"
 	"io"
 	"math/big"
 )

@@ -18,9 +18,9 @@ package sumcheck
 
 import (
 	"fmt"
-	"github.com/0x3327/gnark-crypto/ecc/bn254/fr"
-	"github.com/0x3327/gnark-crypto/ecc/bn254/fr/polynomial"
-	fiatshamir "github.com/0x3327/gnark-crypto/fiat-shamir"
+	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
+	"github.com/consensys/gnark-crypto/ecc/bn254/fr/polynomial"
+	fiatshamir "github.com/consensys/gnark-crypto/fiat-shamir"
 	"strconv"
 )
 

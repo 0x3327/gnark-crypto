@@ -31,9 +31,9 @@ package secp256k1
 import (
 	"math/big"
 
-	"github.com/0x3327/gnark-crypto/ecc"
-	"github.com/0x3327/gnark-crypto/ecc/secp256k1/fp"
-	"github.com/0x3327/gnark-crypto/ecc/secp256k1/fr"
+	"github.com/consensys/gnark-crypto/ecc"
+	"github.com/consensys/gnark-crypto/ecc/secp256k1/fp"
+	"github.com/consensys/gnark-crypto/ecc/secp256k1/fr"
 )
 
 // ID secp256k1 ID

@@ -23,8 +23,8 @@ import (
 	"math/bits"
 	"runtime"
 
-	"github.com/0x3327/gnark-crypto/ecc/bn254/fr"
-	"github.com/0x3327/gnark-crypto/ecc/bn254/fr/fft"
+	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
+	"github.com/consensys/gnark-crypto/ecc/bn254/fr/fft"
 )
 
 // Basis indicates the basis in which a polynomial is represented.

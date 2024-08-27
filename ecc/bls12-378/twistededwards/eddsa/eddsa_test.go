@@ -26,9 +26,9 @@ import (
 
 	"fmt"
 
-	"github.com/0x3327/gnark-crypto/ecc/bls12-378/fr"
-	"github.com/0x3327/gnark-crypto/ecc/bls12-378/twistededwards"
-	"github.com/0x3327/gnark-crypto/hash"
+	"github.com/consensys/gnark-crypto/ecc/bls12-378/fr"
+	"github.com/consensys/gnark-crypto/ecc/bls12-378/twistededwards"
+	"github.com/consensys/gnark-crypto/hash"
 )
 
 func Example() {

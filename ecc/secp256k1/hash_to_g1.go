@@ -17,7 +17,7 @@
 package secp256k1
 
 import (
-	"github.com/0x3327/gnark-crypto/ecc/secp256k1/fp"
+	"github.com/consensys/gnark-crypto/ecc/secp256k1/fp"
 )
 
 // MapToCurve1 implements the Shallue and van de Woestijne method, applicable to any elliptic curve in Weierstrass form

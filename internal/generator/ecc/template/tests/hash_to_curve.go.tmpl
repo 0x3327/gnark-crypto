@@ -8,9 +8,9 @@
 {{$sswu := eq .MappingAlgorithm "SSWU"}}
 
 import (
-	"github.com/0x3327/gnark-crypto/ecc/{{.Name}}/fp"
+	"github.com/consensys/gnark-crypto/ecc/{{.Name}}/fp"
 	{{- if ne $TowerDegree 1}}
-	"github.com/0x3327/gnark-crypto/ecc/{{.Name}}/internal/fptower"
+	"github.com/consensys/gnark-crypto/ecc/{{.Name}}/internal/fptower"
 	"strings"
 	{{- end}}
 	"testing"

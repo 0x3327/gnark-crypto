@@ -21,9 +21,9 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/0x3327/gnark-crypto/ecc/stark-curve/fp"
+	"github.com/consensys/gnark-crypto/ecc/stark-curve/fp"
 
-	"github.com/0x3327/gnark-crypto/ecc/stark-curve/fr"
+	"github.com/consensys/gnark-crypto/ecc/stark-curve/fr"
 	"github.com/leanovate/gopter"
 	"github.com/leanovate/gopter/prop"
 )

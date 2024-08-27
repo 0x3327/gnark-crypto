@@ -23,10 +23,10 @@ import (
 	"runtime"
 	"sync"
 
-	"github.com/0x3327/gnark-crypto/internal/parallel"
+	"github.com/consensys/gnark-crypto/internal/parallel"
 
-	"github.com/0x3327/gnark-crypto/ecc/bn254/fr"
-	"github.com/0x3327/gnark-crypto/ecc/bn254/fr/fft"
+	"github.com/consensys/gnark-crypto/ecc/bn254/fr"
+	"github.com/consensys/gnark-crypto/ecc/bn254/fr/fft"
 )
 
 // errors related to the computation of the quotient and the ratios.

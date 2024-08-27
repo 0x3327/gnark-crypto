@@ -6,17 +6,17 @@ package kzg
 import (
 	"io"
 
-	"github.com/0x3327/gnark-crypto/ecc"
+	"github.com/consensys/gnark-crypto/ecc"
 
-	kzg_bls12377 "github.com/0x3327/gnark-crypto/ecc/bls12-377/kzg"
-	kzg_bls12378 "github.com/0x3327/gnark-crypto/ecc/bls12-378/kzg"
-	kzg_bls12381 "github.com/0x3327/gnark-crypto/ecc/bls12-381/kzg"
-	kzg_bls24315 "github.com/0x3327/gnark-crypto/ecc/bls24-315/kzg"
-	kzg_bls24317 "github.com/0x3327/gnark-crypto/ecc/bls24-317/kzg"
-	kzg_bn254 "github.com/0x3327/gnark-crypto/ecc/bn254/kzg"
-	kzg_bw6633 "github.com/0x3327/gnark-crypto/ecc/bw6-633/kzg"
-	kzg_bw6756 "github.com/0x3327/gnark-crypto/ecc/bw6-756/kzg"
-	kzg_bw6761 "github.com/0x3327/gnark-crypto/ecc/bw6-761/kzg"
+	kzg_bls12377 "github.com/consensys/gnark-crypto/ecc/bls12-377/kzg"
+	kzg_bls12378 "github.com/consensys/gnark-crypto/ecc/bls12-378/kzg"
+	kzg_bls12381 "github.com/consensys/gnark-crypto/ecc/bls12-381/kzg"
+	kzg_bls24315 "github.com/consensys/gnark-crypto/ecc/bls24-315/kzg"
+	kzg_bls24317 "github.com/consensys/gnark-crypto/ecc/bls24-317/kzg"
+	kzg_bn254 "github.com/consensys/gnark-crypto/ecc/bn254/kzg"
+	kzg_bw6633 "github.com/consensys/gnark-crypto/ecc/bw6-633/kzg"
+	kzg_bw6756 "github.com/consensys/gnark-crypto/ecc/bw6-756/kzg"
+	kzg_bw6761 "github.com/consensys/gnark-crypto/ecc/bw6-761/kzg"
 )
 
 type Serializable interface {

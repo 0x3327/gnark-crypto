@@ -17,8 +17,8 @@
 package bls12381
 
 import (
-	"github.com/0x3327/gnark-crypto/ecc/bls12-381/fp"
-	"github.com/0x3327/gnark-crypto/ecc/bls12-381/internal/fptower"
+	"github.com/consensys/gnark-crypto/ecc/bls12-381/fp"
+	"github.com/consensys/gnark-crypto/ecc/bls12-381/internal/fptower"
 )
 
 type batchOpG1Affine struct {
@@ -30,7 +30,7 @@ type batchOpG1Affine struct {
 // using affine coordinates for the buckets. To amortize the cost of the inverse in the affine addition
 // we use a batch affine addition.
 //
-// this is derived from a PR by 0x0ece : https://github.com/0x3327/gnark-crypto/pull/249
+// this is derived from a PR by 0x0ece : https://github.com/ConsenSys/gnark-crypto/pull/249
 // See Section 5.3: ia.cr/2022/1396
 func processChunkG1BatchAffine[BJE ibg1JacExtended, B ibG1Affine, BS bitSet, TP pG1Affine, TPP ppG1Affine, TQ qOpsG1Affine, TC cG1Affine](
 	chunk uint64,
@@ -358,7 +358,7 @@ type batchOpG2Affine struct {
 // using affine coordinates for the buckets. To amortize the cost of the inverse in the affine addition
 // we use a batch affine addition.
 //
-// this is derived from a PR by 0x0ece : https://github.com/0x3327/gnark-crypto/pull/249
+// this is derived from a PR by 0x0ece : https://github.com/ConsenSys/gnark-crypto/pull/249
 // See Section 5.3: ia.cr/2022/1396
 func processChunkG2BatchAffine[BJE ibg2JacExtended, B ibG2Affine, BS bitSet, TP pG2Affine, TPP ppG2Affine, TQ qOpsG2Affine, TC cG2Affine](
 	chunk uint64,

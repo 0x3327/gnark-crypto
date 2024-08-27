@@ -5,9 +5,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/0x3327/gnark-crypto/internal/generator/config"
-	"github.com/0x3327/gnark-crypto/internal/generator/tower/asm/amd64"
 	"github.com/consensys/bavard"
+	"github.com/consensys/gnark-crypto/internal/generator/config"
+	"github.com/consensys/gnark-crypto/internal/generator/tower/asm/amd64"
 )
 
 // Generate generates a tower 2->6->12 over fp

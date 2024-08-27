@@ -19,11 +19,11 @@ package ecdsa
 import (
 	"crypto/subtle"
 	"errors"
-	"github.com/0x3327/gnark-crypto/ecc/secp256k1/fr"
+	"github.com/consensys/gnark-crypto/ecc/secp256k1/fr"
 	"io"
 	"math/big"
 
-	"github.com/0x3327/gnark-crypto/ecc/secp256k1"
+	"github.com/consensys/gnark-crypto/ecc/secp256k1"
 )
 
 var errWrongSize = errors.New("wrong size buffer")

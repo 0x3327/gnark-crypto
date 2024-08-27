@@ -23,8 +23,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/0x3327/gnark-crypto/field/generator/internal/addchain"
 	"github.com/consensys/bavard"
+	"github.com/consensys/gnark-crypto/field/generator/internal/addchain"
 )
 
 var (

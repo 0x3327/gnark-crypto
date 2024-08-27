@@ -5,8 +5,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/0x3327/gnark-crypto/ecc/bn254"
-	"github.com/0x3327/gnark-crypto/utils/unsafe"
+	"github.com/consensys/gnark-crypto/ecc/bn254"
+	"github.com/consensys/gnark-crypto/utils/unsafe"
 	"github.com/stretchr/testify/require"
 )
 

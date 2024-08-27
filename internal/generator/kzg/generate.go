@@ -3,8 +3,8 @@ package kzg
 import (
 	"path/filepath"
 
-	"github.com/0x3327/gnark-crypto/internal/generator/config"
 	"github.com/consensys/bavard"
+	"github.com/consensys/gnark-crypto/internal/generator/config"
 )
 
 func Generate(conf config.Curve, baseDir string, bgen *bavard.BatchGenerator) error {

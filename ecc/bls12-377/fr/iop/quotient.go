@@ -20,10 +20,10 @@ import (
 	"math/big"
 	"math/bits"
 
-	"github.com/0x3327/gnark-crypto/internal/parallel"
+	"github.com/consensys/gnark-crypto/internal/parallel"
 
-	"github.com/0x3327/gnark-crypto/ecc/bls12-377/fr"
-	"github.com/0x3327/gnark-crypto/ecc/bls12-377/fr/fft"
+	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr"
+	"github.com/consensys/gnark-crypto/ecc/bls12-377/fr/fft"
 )
 
 // DivideByXMinusOne

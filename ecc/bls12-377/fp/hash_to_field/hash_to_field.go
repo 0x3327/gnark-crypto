@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"hash"
 
-	"github.com/0x3327/gnark-crypto/ecc/bls12-377/fp"
+	"github.com/consensys/gnark-crypto/ecc/bls12-377/fp"
 )
 
 type wrappedHashToField struct {

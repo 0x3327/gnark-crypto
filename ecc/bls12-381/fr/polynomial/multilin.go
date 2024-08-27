@@ -17,8 +17,8 @@
 package polynomial
 
 import (
-	"github.com/0x3327/gnark-crypto/ecc/bls12-381/fr"
-	"github.com/0x3327/gnark-crypto/utils"
+	"github.com/consensys/gnark-crypto/ecc/bls12-381/fr"
+	"github.com/consensys/gnark-crypto/utils"
 	"math/bits"
 )
 

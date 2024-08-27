@@ -22,8 +22,8 @@ import (
 
 	"github.com/consensys/bavard"
 
-	"github.com/0x3327/gnark-crypto/field/generator/config"
 	"github.com/consensys/bavard/amd64"
+	"github.com/consensys/gnark-crypto/field/generator/config"
 )
 
 const SmallModulus = 6
