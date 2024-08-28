@@ -463,7 +463,7 @@ func (p *G1Jac) ScalarMultiplication(q *G1Jac, s *big.Int) *G1Jac {
 
 // FixedScalarMultiplication computes and returns p = [s]a
 // where p and a are Jacobian points.
-// using the GLV technique.
+// using the GLV technique in combination with `PrecomputationForFixedScalarMultiplication`
 // see https://www.iacr.org/archive/crypto2001/21390189.pdf
 func (p *G1Jac) FixedScalarMultiplication(
 	q *G1Jac, 
@@ -544,6 +544,8 @@ func (p *G1Jac) FixedScalarMultiplication(
 	return p
 }
 
+// PrecomputationForFixedScalarMultiplication performs all necessary pre-computation
+// needed for the `FixedScalarMultiplication` function call
 func PrecomputationForFixedScalarMultiplication(
 	s *big.Int,
 ) (
