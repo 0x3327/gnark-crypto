@@ -15,8 +15,6 @@
 package bn254
 
 import (
-	// "fmt"
-	"fmt"
 	"math/big"
 	"runtime"
 
@@ -601,8 +599,6 @@ func PrecomputationForFixedScalarMultiplication(
 			mask = mask >> 2
 		}
 	}
-
-	fmt.Println(tableElementNeeded)
 
 	return &neg, &k1, &k2, &tableElementNeeded, hiWordIndex, &useMatrix
 }
