@@ -16,6 +16,7 @@ package bn254
 
 import (
 	// "fmt"
+	"fmt"
 	"math/big"
 	"runtime"
 
@@ -451,13 +452,6 @@ func (p *G1Jac) DoubleAssign() *G1Jac {
 		Mul(&p.Y, &M)
 	YYYY.Double(&YYYY).Double(&YYYY).Double(&YYYY)
 	p.Y.Sub(&p.Y, &YYYY)
-
-	// S = (x + y) ** 2 - xx - y**4
-	// M = 3 * x**2
-	// z = (  z + y ) ** 2 - y**2 - zz
-	// x = 9x**4 - 2*S
-	// y = (S-X)*M - (8*yyyy)
-
 	return p
 }
 
@@ -501,12 +495,9 @@ func (p *G1Jac) FixedScalarMultiplication(
 
 	// precompute table (2 bits sliding window)
 	// table[b3b2b1b0-1] = b3b2 ⋅ ϕ(q) + b1b0 ⋅ q if b3b2b1b0 != 0
-	if (tableElementNeeded[1]) {
-		table[1].Double(&table[0])
-	}
-	if (tableElementNeeded[2]) {
-		table[2].Set(&table[1]).AddAssign(&table[0])
-	}
+	table[1].Double(&table[0])
+	table[2].Set(&table[1]).AddAssign(&table[0])
+
 	if (tableElementNeeded[4]) {
 		table[4].Set(&table[3]).AddAssign(&table[0])
 	}
@@ -516,9 +507,9 @@ func (p *G1Jac) FixedScalarMultiplication(
 	if (tableElementNeeded[6]) {
 		table[6].Set(&table[3]).AddAssign(&table[2])
 	}
-	if (tableElementNeeded[7]) {
-		table[7].Double(&table[3])
-	}
+
+	table[7].Double(&table[3])
+
 	if (tableElementNeeded[8]) {
 		table[8].Set(&table[7]).AddAssign(&table[0])
 	}
@@ -528,9 +519,9 @@ func (p *G1Jac) FixedScalarMultiplication(
 	if (tableElementNeeded[10]) {
 		table[10].Set(&table[7]).AddAssign(&table[2])
 	}
-	if (tableElementNeeded[11]) {
-		table[11].Set(&table[7]).AddAssign(&table[3])
-	}
+
+	table[11].Set(&table[7]).AddAssign(&table[3])
+
 	if (tableElementNeeded[12]) {
 		table[12].Set(&table[11]).AddAssign(&table[0])
 	}
@@ -540,7 +531,7 @@ func (p *G1Jac) FixedScalarMultiplication(
 	if (tableElementNeeded[14]) {
 		table[14].Set(&table[11]).AddAssign(&table[2])
 	}
-	
+
 	// loop starts from len(k1)/2 or len(k1)/2+1 due to the bounds
 	for i := hiWordIndex; i >= 0; i-- {
 		for j := 0; j < 32; j++ {
@@ -605,11 +596,13 @@ func PrecomputationForFixedScalarMultiplication(
 			if b1|b2 != 0 {
 				s := (b2<<2 | b1)
 				useMatrix[i][j][1] = s - 1
-				tableElementNeeded[s-1] = true
+				tableElementNeeded[useMatrix[i][j][1]] = true
 			}
 			mask = mask >> 2
 		}
 	}
+
+	fmt.Println(tableElementNeeded)
 
 	return &neg, &k1, &k2, &tableElementNeeded, hiWordIndex, &useMatrix
 }

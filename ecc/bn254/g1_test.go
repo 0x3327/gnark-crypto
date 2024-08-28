@@ -32,7 +32,7 @@ import (
 func Test_ECPDKSAP_FixedScalarMultiplication(t *testing.T) {
 	t.Parallel()
 	parameters := gopter.DefaultTestParameters()
-	parameters.MinSuccessfulTests = 100
+	parameters.MinSuccessfulTests = 2000
 
 	properties := gopter.NewProperties(parameters)
 
@@ -45,7 +45,7 @@ func Test_ECPDKSAP_FixedScalarMultiplication(t *testing.T) {
 
 			op1.ScalarMultiplication(&g, &sInt)
 
-			neg, k1, k2, tableElementNeeded, hiWordIndex, useMatrix := PrecomputationForFixedScalarMultiplication(s.BigInt(new (big.Int)))
+			neg, k1, k2, tableElementNeeded, hiWordIndex, useMatrix := PrecomputationForFixedScalarMultiplication(&sInt)
 			var table [15]G1Jac
 
 			op2.FixedScalarMultiplication(&g, &table, neg, k1, k2, tableElementNeeded, hiWordIndex, useMatrix)
